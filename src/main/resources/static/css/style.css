@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+	margin: 2px;
+	padding: 2px;
+	box-sizing: border-box;
+}
+img{
+	width: 15%;
+	position: relative;
+}
+.navbar-brand{
+	padding-top: 9px;
+}
+.navbar-default{
+	background-color: #0080ff;
+}
+.panel-title{
+	font-family: 'Poppins', sans-serif;
+	font-size: 22px;
+}
+.panel-default{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.control-label{
+	font-family: 'Poppins', sans-serif;
+}
+.alert{
+	margin-left: 10px;
+	margin-right: 10px;
+}

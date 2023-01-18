@@ -1,0 +1,45 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<title>Cadastro de título</title>
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-dark">
+	  <a class="navbar-brand" href="#">
+	    Cadastro de Clientes
+	  </a>
+	</nav>
+	<br>
+	<form method="POST" action="/clientes">
+		<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+			<span th:text="${mensagem}"></span>
+		</div>	
+	  <div class="form-group">
+	  	<label >Nome</label>
+	    <input type="text" class="form-control" id="nome" name="name">
+	  </div>
+	  
+	  <div class="form-group">
+	 	 <label >Telefone</label>
+	    <input type="text" class="form-control" id="telefone" name="fone"
+	    	onkeypress="$(this).mask('(00) 0000-00009')">
+	  </div> 
+	  
+	  <div class="form-group">
+	    <label for="exampleFormControlTextarea1">Observação</label>
+	    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="observation"></textarea>
+	  </div>
+	  	  
+	   <button type="submit" class="btn btn-primary mb-2">Salvar</button>
+	   
+	   <button type="button" class="btn btn-primary mb-2">Endereço</button>
+
+
+<script src="static/js/bootstrap.min.js"></script>
+</body>
+
+</html> 
