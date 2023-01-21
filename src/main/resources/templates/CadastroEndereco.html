@@ -1,5 +1,7 @@
 <!DOCTYPE html >
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8" />
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
@@ -9,11 +11,16 @@
 <body>
 	<nav class="navbar navbar-dark bg-dark">
 	  <a class="navbar-brand" href="#">
-	    Cadastro de Clientes
+	    Cadastro de Endereço
 	  </a>
 	</nav>
 	<br>
-	<form method="POST" action="">
+	<form method="POST" action="/endereco">
+		
+		<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+			<span th:text="${mensagem}"></span>
+		</div>
+		
 	  <div class="form-group">
 	  	<label >Rua</label>
 	    <input type="text" class="form-control" id="street" name="street">

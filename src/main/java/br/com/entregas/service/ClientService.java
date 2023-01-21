@@ -1,5 +1,7 @@
 package br.com.entregas.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,10 @@ public class ClientService {
 	
 	public void save(Client client) {
 		clientrepository.save(client);
+	}
+	
+	public Optional<Client> getById(Long id) {
+		return clientrepository.findById(id);
+		
 	}
 }

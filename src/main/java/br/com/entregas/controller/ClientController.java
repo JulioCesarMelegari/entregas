@@ -10,24 +10,24 @@ import br.com.entregas.entity.Client;
 import br.com.entregas.service.ClientService;
 
 @Controller
-@RequestMapping("/clientes")
+@RequestMapping("ControleEntregas/cliente")
 public class ClientController {
 	
 	@Autowired
 	private ClientService service;
 	
 	@RequestMapping("/novo")
-	public String novo() {
+	public String newClient() {
 		return "CadastroCliente";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView save(Client client) {
+		
 		service.save(client);
 		
 		ModelAndView mv = new ModelAndView("CadastroCliente");
 		mv.addObject("mensagem", "Cliente salvo com sucesso!!!!");
 		return mv;
-	}
-	
+	}	
 }

@@ -33,7 +33,7 @@ public class Client {
 	private Long id;
 	
 	private String name;
-	private String fone;
+	private String phone;
 	private String observation;
 	private LocalDateTime dateregistration= LocalDateTime.now();
 	
