@@ -10,15 +10,18 @@ import br.com.entregas.entity.Adress;
 import br.com.entregas.service.AdressService;
 
 @Controller
-@RequestMapping("ControleEntregas/endereco")
+@RequestMapping("/endereco")
 public class AdressController {
+	
+	private static final String ADRESS_VIEW = "CadastroEndereco";
 	
 	@Autowired
 	private AdressService adressService;
 	
 	@RequestMapping("/novo")
-	public String newAdress() {
-		return "CadastroEndereco";
+	public ModelAndView newAdress() {
+		ModelAndView mv = new ModelAndView(ADRESS_VIEW);
+		return mv;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -28,7 +31,7 @@ public class AdressController {
 		
 		adressService.save(adress);
 		
-		ModelAndView mv = new ModelAndView("CadastroEndereco");
+		ModelAndView mv = new ModelAndView(ADRESS_VIEW);
 		mv.addObject("mensagem", "Endereço salvo com sucesso!!!!");
 		mv.addObject("mensagem", "Endereço salvo com sucesso!!!!");
 		return mv;

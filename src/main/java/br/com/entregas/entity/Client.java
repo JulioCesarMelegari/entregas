@@ -18,9 +18,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 @Data
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -39,6 +41,6 @@ public class Client {
 	
 	@OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private List<Adress> listAdress = new ArrayList<>();
+	private List<Adress> listAdress = new ArrayList<>();	
 	
 }

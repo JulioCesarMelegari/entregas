@@ -35,37 +35,34 @@
 			<h4 class="my-0 font-weight-normal">Lista de Clientes</h4>
 		</div>
 		<div class="card-body">
-			<table class="table table-bordered table-striped">
+			<table class="table table-sm table-bordered table-striped table-condensed">
 				<thead>
 					<tr>
 						<th class="text-center col-md-1">Código</th>
 						<th>Nome</th>
 						<th class="text-center col-md-2">Telefone</th>
-						<th class="text-right col-md-3">Endereço</th>
 						<th class="text-center col-md-3">Observação</th>
 						<th class="text-center col-md-1">Editar</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr >
-						<td class="text-center" >001</td>
-						<td >Roberto Alberto</td>
-						<td class="text-center" >(44)999-999</td>
-						<td class="text-right" >Rua dos Pardais 525</td>
-						<td class="text-center">Irmão do Pereira</td>
+					<tr th:each="client:${clients}">
+						<td class="text-center" th:text="${client.id}">001</td>
+						<td th:text="${client.name}">Roberto Alberto</td>
+						<td class="text-center" th:text="${client.phone}">(44)999-999</td>
+						<td class="text-right" th:text="${client.observation}"></td>
 						<td class="text-center">
 						<a class="btn btn-link" href="#" title="editar">✍</a>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="6" >Nenhum
-							cliente encontrado</td>
+						<td colspan="6" th:if="${#lists.isEmpty(clients)}">Nenhum cliente foi encontrado</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
 	
-			<a class="btn btn-link " href="/cliente/endereco">Endereço</a> 
+			<a class="btn btn-link " href="/endereco/novo">Endereço</a> 
 			<a class="btn btn-link " href="/cliente/novo">cliente</a>
 </html>

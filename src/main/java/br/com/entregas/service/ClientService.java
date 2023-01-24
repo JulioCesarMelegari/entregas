@@ -1,11 +1,11 @@
 package br.com.entregas.service;
 
-import java.util.Optional;
-
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.entregas.entity.Client;
+import br.com.entregas.entity.ClientFilter;
 import br.com.entregas.repository.ClientRepository;
 
 @Service
@@ -18,8 +18,17 @@ public class ClientService {
 		clientrepository.save(client);
 	}
 	
-	public Optional<Client> getById(Long id) {
-		return clientrepository.findById(id);
-		
+	public void delete(Long id) {
+		clientrepository.deleteById(id);
+	}
+	
+	public List<Client> filter(ClientFilter clientFilter){
+		String name = clientFilter.getName() == null ? "%" : clientFilter.getName();
+		return clientrepository.findByNameContaining(name);
+	}
+	
+	public List<Client> listAllClient(){
+		List<Client> list = clientrepository.findAllByOrderByNameAsc();
+		return  list;
 	}
 }
