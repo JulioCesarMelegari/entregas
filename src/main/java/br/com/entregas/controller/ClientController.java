@@ -10,15 +10,25 @@ import br.com.entregas.entity.Client;
 import br.com.entregas.service.ClientService;
 
 @Controller
-@RequestMapping("ControleEntregas/cliente")
+@RequestMapping("cliente")
 public class ClientController {
-	
+
 	@Autowired
 	private ClientService service;
 	
 	@RequestMapping("/novo")
 	public String newClient() {
 		return "CadastroCliente";
+	}
+	
+	@RequestMapping("/endereco")
+	public String adress() {
+		return "CadastroEndereco";
+	}
+	
+	@RequestMapping("/pesquisa")
+	public String pesquisa() {
+		return "PesquisaCliente";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -31,3 +41,4 @@ public class ClientController {
 		return mv;
 	}	
 }
+

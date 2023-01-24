@@ -8,7 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.entregas.entity.Adress;
 import br.com.entregas.service.AdressService;
-import br.com.entregas.service.ClientService;
 
 @Controller
 @RequestMapping("ControleEntregas/endereco")
@@ -16,9 +15,6 @@ public class AdressController {
 	
 	@Autowired
 	private AdressService adressService;
-	
-	@Autowired
-	private ClientService clientService;
 	
 	@RequestMapping("/novo")
 	public String newAdress() {

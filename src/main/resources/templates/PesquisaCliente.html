@@ -1,0 +1,71 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutPadrao}">
+<head>
+<title>Pesquisa de título</title>
+</head>
+
+<section layout:fragment="pesquisa">
+
+	<div class="card box-shadow">
+		<div class="card-header">
+			<h4 class="my-0 font-weight-normal">Pesquisa de Clientes</h4>
+		</div>
+		<div class="card-body">
+			<form method="GET" class="form-horizontal" action="#">
+				<div class="form-group">
+					<div class="input-group mb-2">
+						<div class="input-group mb-2">
+							<input type="text" class="form-control"
+								placeholder="Qual cliente você está procurando?"
+								aria-label="Recipient's username"
+								aria-describedby="basic-addon2">
+							<button class="btn btn-outline-secondary" type="button">Pesquisar</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<br>
+	<div class="card box-shadow">
+		<div class="card-header">
+			<h4 class="my-0 font-weight-normal">Lista de Clientes</h4>
+		</div>
+		<div class="card-body">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th class="text-center col-md-1">Código</th>
+						<th>Nome</th>
+						<th class="text-center col-md-2">Telefone</th>
+						<th class="text-right col-md-3">Endereço</th>
+						<th class="text-center col-md-3">Observação</th>
+						<th class="text-center col-md-1">Editar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr >
+						<td class="text-center" >001</td>
+						<td >Roberto Alberto</td>
+						<td class="text-center" >(44)999-999</td>
+						<td class="text-right" >Rua dos Pardais 525</td>
+						<td class="text-center">Irmão do Pereira</td>
+						<td class="text-center">
+						<a class="btn btn-link" href="#" title="editar">✍</a>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6" >Nenhum
+							cliente encontrado</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+			<a class="btn btn-link " href="/cliente/endereco">Endereço</a> 
+			<a class="btn btn-link " href="/cliente/novo">cliente</a>
+</html>
