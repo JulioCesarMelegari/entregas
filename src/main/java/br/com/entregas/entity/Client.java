@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,8 +36,12 @@ public class Client {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank(message = "O nome é obrigatório")
+	@Size(max = 60, message = "O nome não pode conter mais de 60 caracteres")
 	private String name;
+	
 	private String phone;
+	
 	private String observation;
 	private LocalDateTime dateregistration= LocalDateTime.now();
 	

@@ -2,6 +2,8 @@ package br.com.entregas.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,17 +29,25 @@ public class ClientController {
 	@RequestMapping("/novo")
 	public ModelAndView newClient() {
 		ModelAndView mv = new ModelAndView(CLIENT_VIEW);
+		mv.addObject(new Client());
 		return mv;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView save(Client client) {
-		
-		service.save(client);
-		
-		ModelAndView mv = new ModelAndView(CLIENT_VIEW);
-		mv.addObject("mensagem", "Cliente salvo com sucesso!!!!");
-		return mv;
+	public String save(@Validated Client client, Errors errors, RedirectAttributes attributes) {
+
+		if (errors.hasErrors()) {
+			return CLIENT_VIEW;
+		}
+		try {
+			service.save(client);
+			attributes.addFlashAttribute("mensagem", "Cliente salvo com sucesso! Cadastre o endereço de entrega!");
+			return "redirect:/cliente/novo";
+
+		} catch (IllegalArgumentException e) {
+			errors.rejectValue("name", null, e.getMessage());
+			return "redirect:/cliente/novo";
+		}
 	}
 	
 	@RequestMapping("/pesquisar")

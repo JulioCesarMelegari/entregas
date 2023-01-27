@@ -15,45 +15,49 @@
 			<h4 class="my-0 font-weight-normal">Cliente</h4>
 		</div>
 		<div class="card-body">
-			<form method="POST" action="/cliente">
+			<form class="form-horizontal" method="POST" action="/cliente" th:object="${client}">
+			
+				<div th:replace="MensagemGeral"></div>
+				<div th:replace="MensagemErro"></div>
 
-				<div class="alert alert-success"
-					th:if="${!#strings.isEmpty(mensagem)}">
-					<span th:text="${mensagem}"></span>
-				</div>
+	
+				<div class="panel-body">
 
-				<div class="form-group">
-					<div class="com-sm-2">
-						<label>Nome</label> <input type="text" class="form-control"
-							id="name" name="name">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="com-sm-2">
-						<label>Telefone</label> <input type="text"
-							class="phone form-control" id="phone" name="phone"
-							onkeypress="$(this).mask('(00) 0 0000-0009')">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="com-sm-2">
-						<label for="">Observação</label>
-						<textarea class="form-control" id="observation" rows="3"
-							name="observation"></textarea>
+					<div class="form-group"	th:classappend="${#fields.hasErrors('name')} ? has-error">
+						<div class="com-sm-2">
+							<label>Nome</label> 
+							<input type="text" class="form-control" id="name" th:field="*{name}">
+						</div>
 					</div>
 
-				</div>
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('phone')} ? has-error">
+						<div class="com-sm-2">
+							<label>Telefone</label> 
+							<input type="text" class="phone form-control" id="phone" th:field="*{phone}"
+								onkeypress="$(this).mask('(00) 0 0000-0009')">
+						</div>
+					</div>
+
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('observation')} ? has-error">
+						<div class="com-sm-2">
+							<label for="">Observação</label>
+							<textarea class="form-control" id="observation" rows="3"
+								th:field="*{observation}"></textarea>
+						</div>
+
+					</div>
 
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-primary mb-2">Salvar</button>
-						<a class="btn btn-link " href="/endereco/novo">Endereço</a>
-						<a class="btn btn-link " href="/cliente/pesquisar">Pesquisar</a>
+						<a class="btn btn-link " href="/endereco/novo">Endereço</a> <a
+							class="btn btn-link " href="/cliente/pesquisar">Pesquisar</a>
 
+					</div>
 				</div>
 			</form>
 		</div>
 	</div>
-	</section>
-	</html>
+</section>
+</html>

@@ -2,6 +2,8 @@ package br.com.entregas.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,18 +23,20 @@ public class AdressController {
 	@RequestMapping("/novo")
 	public ModelAndView newAdress() {
 		ModelAndView mv = new ModelAndView(ADRESS_VIEW);
+		mv.addObject(new Adress());
 		return mv;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView save(Adress adress) {
+	public ModelAndView save(@Validated Adress adress, Errors errors) {
+		ModelAndView mv = new ModelAndView(ADRESS_VIEW);
+		
+		if(errors.hasErrors()) {
+			return mv;
+		}
 		
 		//clientService.getById(null)
-		
 		adressService.save(adress);
-		
-		ModelAndView mv = new ModelAndView(ADRESS_VIEW);
-		mv.addObject("mensagem", "Endereço salvo com sucesso!!!!");
 		mv.addObject("mensagem", "Endereço salvo com sucesso!!!!");
 		return mv;
 	}
