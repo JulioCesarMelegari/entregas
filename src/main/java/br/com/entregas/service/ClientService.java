@@ -1,6 +1,8 @@
 package br.com.entregas.service;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,10 @@ public class ClientService {
 	
 	public void delete(Long id) {
 		clientrepository.deleteById(id);
+	}
+	
+	public Client getClientByID(Long id) {
+		return clientrepository.getById(id);
 	}
 	
 	public List<Client> filter(ClientFilter clientFilter){

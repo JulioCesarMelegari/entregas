@@ -1,10 +1,14 @@
 package br.com.entregas.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.entregas.entity.Adress;
+import br.com.entregas.entity.AdressFilter;
+import br.com.entregas.entity.Client;
 import br.com.entregas.repository.AdressRepository;
 
 @Service
@@ -13,8 +17,35 @@ public class AdressService {
 	@Autowired
 	private AdressRepository repository;
 	
+	
 	public void save(Adress adress) {
-		repository.save(adress);
+		
+		try {
+			
+			repository.save(adress);
+			
+		} catch (DataIntegrityViolationException e){
+			
+			throw new IllegalArgumentException("Dados invalidos");
+		}	
+	}
+	
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
+	
+	public Adress getAdressById(Long id) {
+		return repository.getById(id);
+	}
+	
+	public List<Adress> filter (AdressFilter adressFilter){
+		String street = adressFilter.getStreet() == null ? "%" : adressFilter.getStreet();
+		return repository.findByStreetContaining(street);
+	}
+
+	public List<Adress> listAllAdress() {
+		List<Adress> list = repository.findAllByOrderByStreetAsc();
+		return list;
 	}
 
 }

@@ -15,26 +15,38 @@
 			<h4 class="my-0 font-weight-normal">Endereço</h4>
 		</div>
 		<div class="card-body">
-			<form method="POST" action="#">
+			<form method="POST" action="/endereco" th:object="${adress}">
+			
+				<div th:replace="MensagemGeral"></div>
+				<div th:replace="MensagemErro"></div>
+				
+				<div class="form-group" th:classappend="${#fields.hasErrors('street')} ? has-error">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Cliente</label>
+						<div class="col-sm-2"> 
+							<input type="text" class="form-control"	id="street" th:field="*{idClient}" readonly>
+						</div>
+					</div>
+				</div>
 
-				<div class="alert alert-success">
-					<span></span>
+				
+				<div class="form-group" th:classappend="${#fields.hasErrors('street')} ? has-error">
+					<label>Rua</label> 
+					<input type="text" class="form-control"	id="street" th:field="*{street}">
 				</div>
-				<div class="form-group">
-					<label>Rua</label> <input type="text" class="form-control"
-						id="street" name="street">
+				<div class="form-group" th:classappend="${#fields.hasErrors('number')} ? has-error">
+					<label>Número</label> 
+					<input type="text" class="form-control"	id="number" th:field="*{number}">
 				</div>
-				<div class="form-group">
-					<label>Número</label> <input type="text" class="form-control"
-						id="number" name="number">
+				
+				<div class="form-group" th:classappend="${#fields.hasErrors('district')} ? has-error">
+					<label>Bairro</label> 
+					<input type="text" class="form-control"	id="district" th:field="*{district}">
 				</div>
-				<div class="form-group">
-					<label>Bairro</label> <input type="text" class="form-control"
-						id="district" name="district">
-				</div>
-				<div class="form-group">
-					<label>Cidade</label> <input type="text" class="form-control"
-						id="city" name="city">
+				
+				<div class="form-group" th:classappend="${#fields.hasErrors('city')} ? has-error">
+					<label>Cidade</label> 
+					<input type="text" class="form-control"	id="city" th:field="*{city}">
 				</div>
 				<button type="submit" class="btn btn-primary mb-2">Salvar</button>
 				<a class="btn btn-link " href="/cliente/novo">Cliente</a> 
@@ -42,4 +54,6 @@
 			</form>
 
 		</div>
-	</div></html>
+		</div>
+	</section>
+	</html>

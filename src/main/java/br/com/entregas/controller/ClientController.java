@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,16 +11,17 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+
+import br.com.entregas.entity.Adress;
 import br.com.entregas.entity.Client;
-import br.com.entregas.entity.ClientFilter;
 import br.com.entregas.service.ClientService;
 
 @Controller
-@RequestMapping("cliente")
+@RequestMapping("/cliente")
 public class ClientController {
 	
 	private static final String CLIENT_VIEW = "CadastroCliente";
-	private static final String SEARCH_VIEW = "PesquisaCliente";
+	private static final String SEARCH_VIEW_CLIENT = "PesquisaCliente";
 
 	@Autowired
 	private ClientService service;
@@ -34,19 +34,21 @@ public class ClientController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Validated Client client, Errors errors, RedirectAttributes attributes) {
-
+	public ModelAndView save(@Validated Client client, Errors errors, RedirectAttributes attributes) {
+		ModelAndView mv = new ModelAndView(CLIENT_VIEW);		
+		
 		if (errors.hasErrors()) {
-			return CLIENT_VIEW;
+			return mv;
 		}
 		try {
 			service.save(client);
-			attributes.addFlashAttribute("mensagem", "Cliente salvo com sucesso! Cadastre o endereço de entrega!");
-			return "redirect:/cliente/novo";
+			mv.addObject("mensagem", "Cliente salvo com sucesso! Cadastre o endereço de entrega!");
+			return mv;
 
 		} catch (IllegalArgumentException e) {
 			errors.rejectValue("name", null, e.getMessage());
-			return "redirect:/cliente/novo";
+			mv.addObject("mensagem", "Preencher nome");
+			return mv;
 		}
 	}
 	
@@ -54,14 +56,14 @@ public class ClientController {
 	public ModelAndView ListAll() {
 		List<Client> listClient = service.listAllClient();
 		
-		ModelAndView mv = new ModelAndView(SEARCH_VIEW);
+		ModelAndView mv = new ModelAndView(SEARCH_VIEW_CLIENT);
 		mv.addObject("clients", listClient);
 		return mv;
 	}
 	
 	@RequestMapping("{id}")
 	public ModelAndView edit(@PathVariable("id") Client client) {
-				
+			
 		ModelAndView mv = new ModelAndView(CLIENT_VIEW); 
 		mv.addObject(client);
 		return mv;
@@ -74,6 +76,7 @@ public class ClientController {
 		attributes.addFlashAttribute("mensagem", "Cliente excluído com sucesso!");
 		return "redirect:/cliente";
 	}
+	
 	
 }
 

@@ -1,38 +1,17 @@
 <!DOCTYPE html >
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{LayoutPadrao}">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<title>Pesquisa Clientes</title>
+<title>Pesquisa de Endereço</title>
 </head>
 
 <section layout:fragment="pesquisa">
 
+
 	<div class="card box-shadow">
 		<div class="card-header">
-			<h4 class="my-0 font-weight-normal">Pesquisa de Clientes</h4>
-		</div>
-		<div class="card-body">
-			<form method="GET" class="form-horizontal" action="#">
-				<div class="form-group">
-					<div class="input-group mb-2">
-						<div class="input-group mb-2">
-							<input type="text" class="form-control"
-								placeholder="Qual cliente você está procurando?"
-								aria-label="Recipient's username"
-								aria-describedby="basic-addon2">
-							<button class="btn btn-outline-secondary" type="button">Pesquisar</button>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
-	<br>
-	<div class="card box-shadow">
-		<div class="card-header">
-			<h4 class="my-0 font-weight-normal">Lista de Clientes</h4>
+			<h4 class="my-0 font-weight-normal">Endereços cadasdtrados</h4>
 		</div>
 		<div class="card-body">
 			<table class="table table-sm table-bordered table-striped table-condensed">
@@ -43,7 +22,7 @@
 						<th class="text-center col-md-2">Telefone</th>
 						<th class="text-center col-md-3">Observação</th>
 						<th class="text-center col-md-1">Editar</th>
-						<th class="text-center col-md-1">Excluir</th>
+						<th class="text-center col-md-1">Endereço</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -60,8 +39,9 @@
 						</td>
 						
 						<td class="text-center">
-							<a class="btn btn-link btn-xs" title="Excluir" rel="tooltip" data-placement="top">
-								<span>💣</span>
+							<a class="btn btn-link btn-xs" th:href="@{/endereco/client/{id}(id=${client.id})}"
+								title="Endereco" rel="tooltip" data-placement="top">
+								<span>🏍</span>
 							</a>
 						</td>
 					</tr>

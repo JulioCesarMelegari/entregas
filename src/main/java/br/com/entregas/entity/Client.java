@@ -2,19 +2,14 @@ package br.com.entregas.entity;
 
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,8 +40,10 @@ public class Client {
 	private String observation;
 	private LocalDateTime dateregistration= LocalDateTime.now();
 	
-	@OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
-	@JsonIgnore
-	private List<Adress> listAdress = new ArrayList<>();	
+	private Long idAdress1;
+	
+	private Long idAdress2;	
+	
+	private Long idAdress3;	
 	
 }

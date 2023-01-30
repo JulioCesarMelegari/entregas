@@ -22,6 +22,7 @@
 
 	
 				<div class="panel-body">
+				<input type="hidden" th:field="*{id}"/>
 
 					<div class="form-group"	th:classappend="${#fields.hasErrors('name')} ? has-error">
 						<div class="com-sm-2">
@@ -51,13 +52,20 @@
 
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-primary mb-2">Salvar</button>
-						<a class="btn btn-link " href="/endereco/novo">Endereço</a> <a
-							class="btn btn-link " href="/cliente/pesquisar">Pesquisar</a>
+						<a class="btn btn-link btn-xs" th:href="@{/endereco/novo/{id}(id=${client.id})}"
+								title="Endereco" rel="tooltip" data-placement="top">Endereço</a> 
+						<a class="btn btn-link " href="/cliente/pesquisar">Pesquisar</a>
 
 					</div>
+						
 				</div>
 			</form>
+			
+			
+			
 		</div>
 	</div>
+	<div th:replace="PesquisaEndereco"></div>
 </section>
+
 </html>

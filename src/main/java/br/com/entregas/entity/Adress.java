@@ -1,14 +1,13 @@
 package br.com.entregas.entity;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
@@ -29,12 +28,10 @@ public class Adress {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotBlank(message = "Cliente é obrigatório")
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "client_id")
-	private Client client;
+	@NotNull(message = "Favor Informar o Cliente")
+	private Long idClient;
 	
-	
+	@NotBlank(message = "Rua é Obrigatório")
 	@Size(max = 80, message = "A rua não pode conter mais de 80 caracteres")
 	private String street;
 	
