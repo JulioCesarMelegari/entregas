@@ -39,7 +39,7 @@ public class AdressController {
 		
 		Adress adress = new Adress();
 		
-		adress.setIdClient(id);
+		adress.setIdClient(Long.toString(id));
 		
 		ModelAndView mv = new ModelAndView(ADRESS_VIEW);
 		mv.addObject(adress);
@@ -65,14 +65,6 @@ public class AdressController {
 		}
 	}
 	
-	@RequestMapping("/pesquisar")
-	public ModelAndView ListAll() {
-		List<Adress> listAdress = adressService.listAllAdress();
-		
-		ModelAndView mv = new ModelAndView(SEARCH_VIEW_ADRESS);
-		mv.addObject("adress", listAdress);
-		return mv;
-	}
 	
 	@RequestMapping("{id}")
 	public ModelAndView edit(@PathVariable("id") Adress adress) {

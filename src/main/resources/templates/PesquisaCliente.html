@@ -42,14 +42,13 @@
 						<th>Nome</th>
 						<th class="text-center col-md-2">Telefone</th>
 						<th class="text-center col-md-3">Observação</th>
-						<th class="text-center col-md-1">Editar</th>
-						<th class="text-center col-md-1">Excluir</th>
+						<th class="text-center col-md-1">Editar/Excluir</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="client:${clients}">
 						<td class="text-center" th:text="${client.id}"></td>
-						<td th:text="${client.name}"></td>
+						<td class="text-center" th:text="${client.name}"></td>
 						<td class="text-center" th:text="${client.phone}"></td>
 						<td class="text-right" th:text="${client.observation}"></td>
 						<td class="text-center">
@@ -57,10 +56,9 @@
 								title="Editar" rel="tooltip" data-placement="top">
 								<span>✍</span>
 							</a>
-						</td>
-						
-						<td class="text-center">
-							<a class="btn btn-link btn-xs" title="Excluir" rel="tooltip" data-placement="top">
+							<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal" 
+							th:attr="data-id=${client.id}, data-name=${client.name}"
+								title="Excluir" rel="tooltip" data-placement="top">
 								<span>💣</span>
 							</a>
 						</td>
@@ -73,7 +71,9 @@
 		</div>
 	</div>
 	
-			<a class="btn btn-link " href="/endereco/novo">Endereço</a> 
-			<a class="btn btn-link " href="/cliente/novo">cliente</a>
+	<div th:replace="DialogoConfirmacaoExclusao"></div>
+	
+	<a class="btn btn-link " href="/endereco/novo">Endereço</a> 
+	<a class="btn btn-link " href="/cliente/novo">Novo cliente</a>
 </section>
 </html>

@@ -2,12 +2,15 @@ package br.com.entregas.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.entregas.entity.Adress;
 import br.com.entregas.entity.AdressFilter;
+import br.com.entregas.entity.AdressFilterClient;
 import br.com.entregas.entity.Client;
 import br.com.entregas.repository.AdressRepository;
 
@@ -42,10 +45,26 @@ public class AdressService {
 		String street = adressFilter.getStreet() == null ? "%" : adressFilter.getStreet();
 		return repository.findByStreetContaining(street);
 	}
+	
+	public List<Adress> getAdressByClient (String idClient){
+		return repository.findByidClientContaining(idClient);
+	}
+
 
 	public List<Adress> listAllAdress() {
 		List<Adress> list = repository.findAllByOrderByStreetAsc();
 		return list;
+	}
+	
+	@Transactional
+	public List<Adress> getAllAdressByClient(String idClient){
+		List<Adress> allAdress = (List<Adress>) repository.findAllByIdClient(idClient);
+		return allAdress;
+	}
+	
+	@Transactional
+	public void deleteAllByAdress(List<Adress> adresses) {
+		repository.deleteAll(adresses);
 	}
 
 }

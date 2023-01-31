@@ -17,43 +17,38 @@
 			<table class="table table-sm table-bordered table-striped table-condensed">
 				<thead>
 					<tr>
-						<th class="text-center col-md-1">Código</th>
-						<th>Nome</th>
-						<th class="text-center col-md-2">Telefone</th>
-						<th class="text-center col-md-3">Observação</th>
-						<th class="text-center col-md-1">Editar</th>
-						<th class="text-center col-md-1">Endereço</th>
+						<th class="text-center col-md-3">Rua</th>
+						<th class="text-center col-md-1">Número</th>
+						<th class="text-center col-md-2">Bairro</th>
+						<th class="text-center col-md-1">Cidade</th>
+						<th class="text-center col-md-1">Editar/Excluir</th>
+
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="client:${clients}">
-						<td class="text-center" th:text="${client.id}"></td>
-						<td th:text="${client.name}"></td>
-						<td class="text-center" th:text="${client.phone}"></td>
-						<td class="text-right" th:text="${client.observation}"></td>
+					<tr th:each="adress:${adresses}">
+						<td class="text-center" th:text="${adress.street}"></td>
+						<td class="text-center"th:text="${adress.number}"></td>
+						<td class="text-center" th:text="${adress.district}"></td>
+						<td class="text-center" th:text="${adress.city}"></td>
 						<td class="text-center">
-							<a class="btn btn-link btn-xs" th:href="@{/cliente/{id}(id=${client.id})}"
+							<a class="btn btn-link btn-xs" th:href="@{/endereco/{id}(id=${adress.id})}"
 								title="Editar" rel="tooltip" data-placement="top">
 								<span>✍</span>
 							</a>
-						</td>
-						
-						<td class="text-center">
-							<a class="btn btn-link btn-xs" th:href="@{/endereco/client/{id}(id=${client.id})}"
-								title="Endereco" rel="tooltip" data-placement="top">
-								<span>🏍</span>
+							<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal" 
+							th:attr="data-id=${adress.id}, data-street=${adress.street}"
+								title="Excluir" rel="tooltip" data-placement="top">
+								<span>💣</span>
 							</a>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="6" th:if="${#lists.isEmpty(clients)}">Nenhum cliente foi encontrado</td>
+						<td colspan="6" th:if="${#lists.isEmpty(adresses)}">Nenhum endereço foi encontrado</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	
-			<a class="btn btn-link " href="/endereco/novo">Endereço</a> 
-			<a class="btn btn-link " href="/cliente/novo">cliente</a>
 </section>
 </html>

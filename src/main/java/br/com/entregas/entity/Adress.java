@@ -28,8 +28,8 @@ public class Adress {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotNull(message = "Favor Informar o Cliente")
-	private Long idClient;
+	
+	private String idClient;
 	
 	@NotBlank(message = "Rua é Obrigatório")
 	@Size(max = 80, message = "A rua não pode conter mais de 80 caracteres")

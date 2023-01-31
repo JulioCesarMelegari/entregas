@@ -14,6 +14,7 @@ import java.util.List;
 
 import br.com.entregas.entity.Adress;
 import br.com.entregas.entity.Client;
+import br.com.entregas.service.AdressService;
 import br.com.entregas.service.ClientService;
 
 @Controller
@@ -25,6 +26,9 @@ public class ClientController {
 
 	@Autowired
 	private ClientService service;
+	
+	@Autowired
+	private AdressService adressService;
 	
 	@RequestMapping("/novo")
 	public ModelAndView newClient() {
@@ -63,18 +67,24 @@ public class ClientController {
 	
 	@RequestMapping("{id}")
 	public ModelAndView edit(@PathVariable("id") Client client) {
+		
+		List<Adress> listAdress = adressService.getAdressByClient(Long.toString(client.getId()));
 			
-		ModelAndView mv = new ModelAndView(CLIENT_VIEW); 
+		ModelAndView mv = new ModelAndView(CLIENT_VIEW);
+		mv.addObject("adresses", listAdress);
 		mv.addObject(client);
 		return mv;
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable Long id, RedirectAttributes attributes) {
+		
+		List<Adress> adresses = adressService.getAllAdressByClient(Long.toString(id));
+		adressService.deleteAllByAdress(adresses);
 		service.delete(id);
 		
 		attributes.addFlashAttribute("mensagem", "Cliente excluído com sucesso!");
-		return "redirect:/cliente";
+		return "redirect:/cliente/pesquisar";
 	}
 	
 	
