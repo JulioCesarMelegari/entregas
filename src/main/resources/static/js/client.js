@@ -15,5 +15,5 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event){
 	form.attr('action', action + id);
 	
 	//modal-body = classe do span
-	modal.find('.modal-body span').html('Tem certeza que deseja excluir o cliente <strong>' + name + '</strong>?');
+	modal.find('.modal-body span').html('Tem certeza que deseja excluir o cadastro de <strong>' + name + '</strong>?');
 });

@@ -1,14 +1,13 @@
 package br.com.entregas.entity;
 
-
 import java.time.LocalDateTime;
-
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
@@ -17,28 +16,35 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
 @Data
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
 @javax.persistence.Entity
-@Table(name = "tb_client")
-public class Client {
+@Table(name = "tb_delivery")
+public class Delivery {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message = "O nome é obrigatório")
-	@Size(max = 60, message = "O nome não pode conter mais de 60 caracteres")
-	private String name;
+	@NotBlank(message = "Preencher com o nome do cliente")
+	private String Client;
 	
-	private String phone;
+	@NotBlank(message = "Preencer com o enderço de entrega")
+	private String deliveryAdress;
 	
-	private String observation;
+	@NotBlank(message = "O pedido é obrigatório")
+	@Size(max = 20, message = "O pedido nao pode conter mais que 20 caracteres")
+	private String order;
 	
+	@NotNull(message = "Preencer com o total do pedido")
+	private double valueOrder;
+	
+	@NotNull(message = "Preencer com o total do pedido")
+	private double deliveryFee;
+
 	private LocalDateTime dateregistration= LocalDateTime.now();
 	
 }

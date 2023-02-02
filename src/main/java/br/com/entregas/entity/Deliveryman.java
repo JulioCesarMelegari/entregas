@@ -1,8 +1,6 @@
 package br.com.entregas.entity;
 
-
 import java.time.LocalDateTime;
-
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,15 +15,14 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
 @Data
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
 @javax.persistence.Entity
-@Table(name = "tb_client")
-public class Client {
+@Table(name = "tb_deliveryman")
+public class Deliveryman {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

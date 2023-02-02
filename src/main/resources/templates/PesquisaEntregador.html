@@ -4,14 +4,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{LayoutPadrao}">
 <head>
-<title>Pesquisa Clientes</title>
+<title>Pesquisa Entregadores</title>
 </head>
 
-<section layout:fragment="pesquisa">
+<section layout:fragment="pesquisaEntregador">
 
 	<div class="card box-shadow">
 		<div class="card-header">
-			<h4 class="my-0 font-weight-normal">Pesquisa de Clientes</h4>
+			<h4 class="my-0 font-weight-normal">Entregadores Cadastrados</h4>
 		</div>
 		<div class="card-body">
 			<form method="GET" class="form-horizontal" action="#">
@@ -32,8 +32,8 @@
 	<br>
 	<div class="card box-shadow">
 		<div class="card-header">
-			<h4 class="my-0 font-weight-normal aw-titulo-panel">Lista de Clientes</h4>
-			<a class="btn btn-link aw-link-panel" href="/cliente/novo">Novo Cliente</a>
+			<h4 class="my-0 font-weight-normal aw-titulo-panel">Lista de Entregadores</h4>
+			<a class="btn btn-link aw-link-panel" href="/entregador/novo">Novo Entregador</a>
 		</div>
 		<div class="card-body">
 			<table class="table table-sm table-bordered table-striped table-condensed">
@@ -47,31 +47,32 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="client:${clients}">
-						<td class="text-center" th:text="${client.id}"></td>
-						<td class="text-center" th:text="${client.name}"></td>
-						<td class="text-center" th:text="${client.phone}"></td>
-						<td class="text-center" th:text="${client.observation}"></td>
+					<tr th:each="deliveryman:${deliverymans}">
+						<td class="text-center" th:text="${deliveryman.id}"></td>
+						<td class="text-center" th:text="${deliveryman.name}"></td>
+						<td class="text-center" th:text="${deliveryman.phone}"></td>
+						<td class="text-center" th:text="${deliveryman.observation}"></td>
 						<td class="text-center">
-							<a class="btn btn-link btn-xs" th:href="@{/cliente/{id}(id=${client.id})}"
+							<a class="btn btn-link btn-xs" th:href="@{/entregador/{id}(id=${deliveryman.id})}"
 								title="Editar" rel="tooltip" data-placement="top">
 								<span>✍</span>
 							</a>
 							<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal" 
-							th:attr="data-id=${client.id}, data-name=${client.name}"
+							th:attr="data-id=${deliveryman.id}, data-name=${deliveryman.name}"
 								title="Excluir" rel="tooltip" data-placement="top">
 								<span>💣</span>
 							</a>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="6" th:if="${#lists.isEmpty(clients)}">Nenhum cliente foi encontrado</td>
+						<td colspan="6" th:if="${#lists.isEmpty(deliverymans)}">Nenhum Entregador Cadastrado!</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
 	
-	<div th:replace="DialogoConfirmacaoExclusaoCliente"></div>
+	<div th:replace="DialogoConfirmacaoExclusaoEntregador"></div>
+	
 </section>
 </html>

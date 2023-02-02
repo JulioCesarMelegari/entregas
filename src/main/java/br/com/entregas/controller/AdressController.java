@@ -1,7 +1,5 @@
 package br.com.entregas.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -14,14 +12,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.entregas.entity.Adress;
 import br.com.entregas.service.AdressService;
-import br.com.entregas.service.ClientService;
 
 @Controller
 @RequestMapping("/endereco")
 public class AdressController {
 	
 	private static final String ADRESS_VIEW = "CadastroEndereco";
-	private static final String SEARCH_VIEW_ADRESS = "PesquisaEndereco";
 	
 	@Autowired
 	private AdressService adressService;

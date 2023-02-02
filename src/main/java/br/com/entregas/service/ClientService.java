@@ -1,7 +1,6 @@
 package br.com.entregas.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -29,6 +28,7 @@ public class ClientService {
 		clientrepository.deleteById(id);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public Client getClientByID(Long id) {
 		return clientrepository.getById(id);
 	}

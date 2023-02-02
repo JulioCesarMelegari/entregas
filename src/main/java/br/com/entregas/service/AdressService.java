@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.entregas.entity.Adress;
 import br.com.entregas.entity.AdressFilter;
-import br.com.entregas.entity.AdressFilterClient;
-import br.com.entregas.entity.Client;
 import br.com.entregas.repository.AdressRepository;
 
 @Service
@@ -37,6 +35,7 @@ public class AdressService {
 		repository.deleteById(id);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public Adress getAdressById(Long id) {
 		return repository.getById(id);
 	}
