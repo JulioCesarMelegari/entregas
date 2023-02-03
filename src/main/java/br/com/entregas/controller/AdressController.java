@@ -31,11 +31,11 @@ public class AdressController {
 	}
 	
 	@RequestMapping("/novo/{id}")
-	public ModelAndView newAdressByClient(@PathVariable("id") Long id) {
+	public ModelAndView newAdressByClient(@PathVariable("id") String id) {
 		
 		Adress adress = new Adress();
 		
-		adress.setIdClient(Long.toString(id));
+		adress.setIdClient(id);
 		
 		ModelAndView mv = new ModelAndView(ADRESS_VIEW);
 		mv.addObject(adress);
@@ -71,10 +71,23 @@ public class AdressController {
 	}
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-	public String delete(@PathVariable Long id, RedirectAttributes attributes) {
+	public ModelAndView delete(@PathVariable Long id, RedirectAttributes attributes) {
+		
+		Adress oldAdress = adressService.getAdressById(id);
+		
+		String idClient = oldAdress.getIdClient();
+		
+		Adress newAdress = new Adress();
+		
+		newAdress.setIdClient(idClient);
+		
 		adressService.delete(id);
 		
+		ModelAndView mv = new ModelAndView(ADRESS_VIEW);
 		attributes.addFlashAttribute("mensagem", "Endereco excluido com sucesso!");
-		return "redirect:/endereco";
+		mv.addObject(newAdress);
+		mv.addObject("mensagem");
+		return mv;
+
 	}
 }
