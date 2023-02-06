@@ -42,8 +42,12 @@ public class Delivery {
 	@NotNull(message = "Preencer com o total do pedido")
 	private double valueOrder;
 	
-	@NotNull(message = "Preencer com o total do pedido")
+	@NotNull(message = "Indique o entregador")
+	private double deliveryMaan;
+	
+	@NotNull(message = "Preencer com a taxa de entrega")
 	private double deliveryFee;
+	
 
 	private LocalDateTime dateregistration= LocalDateTime.now();
 	

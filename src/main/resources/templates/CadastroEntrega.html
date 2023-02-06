@@ -5,69 +5,80 @@
 	layout:decorate="~{LayoutPadrao}">
 <head>
 <meta charset="UTF-8" />
-<title>Cadastro de Clientes</title>
+<title>Cadastro de Entregas</title>
 </head>
 
 <section layout:fragment="entrega">
 
 	<div class="card mb-4 box-shadow">
 		<div class="card-header">
-			<h4 class="my-0 font-weight-normal aw-titulo-panel">Cliente</h4>
-			<a class="btn btn-link aw-link-panel" href="/cliente/novo">Novo cliente</a>
+			<h4 class="my-0 font-weight-normal aw-titulo-panel">Entrega</h4>
+			<a class="btn btn-link aw-link-panel" href="/entrega/novo">Nova entrega</a>
 		</div>
 		<div class="card-body">
-			<form class="form-horizontal" method="POST" action="/cliente" th:object="${client}">
+			<form class="form-horizontal" method="POST" action="/entrega" th:object="${delivery}">
 			
 				<div th:replace="MensagemGeral"></div>
 				<div th:replace="MensagemErro"></div>
 
-	
 				<div class="panel-body">
 				<input type="hidden" th:field="*{id}"/>
 
-					<div class="form-group"	th:classappend="${#fields.hasErrors('name')} ? has-error">
+					<div class="form-group"	th:classappend="${#fields.hasErrors('client')} ? has-error">
 						<div class="com-sm-2">
-							<label>Nome</label> 
-							<input type="text" class="form-control" id="name" th:field="*{name}">
+							<label>Cliente</label> 
+							<input type="text" class="form-control" id="client" th:field="*{client}">
 						</div>
 					</div>
 
 					<div class="form-group"
-						th:classappend="${#fields.hasErrors('phone')} ? has-error">
+						th:classappend="${#fields.hasErrors('deliveryAdress')} ? has-error">
 						<div class="com-sm-2">
-							<label>Telefone</label> 
-							<input type="text" class="phone form-control" id="phone" th:field="*{phone}"
-								onkeypress="$(this).mask('(00) 0 0000-0009')">
+							<label>Endereço de entregas</label> 
+							<input type="text" class="phone form-control" id="deliveryAdress" th:field="*{deliveryAdress}">
 						</div>
 					</div>
 
 					<div class="form-group"
-						th:classappend="${#fields.hasErrors('observation')} ? has-error">
+						th:classappend="${#fields.hasErrors('order')} ? has-error">
 						<div class="com-sm-2">
-							<label for="">Observação</label>
-							<textarea class="form-control" id="observation" rows="3"
-								th:field="*{observation}"></textarea>
+							<label for="">Pedido</label>
+							<input class="form-control" id="order" rows="3"
+								th:field="*{order}"></input>
 						</div>
-
+					</div>
+					
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('valueOrder')} ? has-error">
+						<div class="com-sm-2">
+							<label for="">Total do Pedido</label>
+							<input class="form-control" id="valueOrder" rows="3"
+								th:field="*{valueOrder}"></input>
+						</div>
+					</div>
+					
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('deliveryFee')} ? has-error">
+						<div class="com-sm-2">
+							<label for="">Entregador</label>
+							<input class="form-control" id="deliveryFee" rows="3"
+								th:field="*{deliveryFee}"></input>
+						</div>
 					</div>
 
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-primary mb-2">Salvar</button>
-						<a class="btn btn-link btn-xs" th:href="@{/endereco/novo/{id}(id=${client.id})}"
+						<a class="btn btn-link btn-xs" th:href="@{/entrega/novo/{id}(id=${delivery.id})}"
 								title="Endereco" rel="tooltip" data-placement="top">Endereço</a> 
-						<a class="btn btn-link " href="/cliente/pesquisar">Pesquisar</a>
+						<a class="btn btn-link " href="/entrega/pesquisar">Pesquisar</a>
 
 					</div>
 						
 				</div>
-			</form>
-			
-			
-			
+			</form>	
 		</div>
 	</div>
 	
-	<div th:replace="PesquisaEndereco"></div>
 </section>
 
 </html>

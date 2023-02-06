@@ -1,0 +1,85 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutPadrao}">
+<head>
+<title>Pesquisa Entregas</title>
+</head>
+
+<section layout:fragment="pesquisaEntrega">
+
+	<div class="card box-shadow">
+		<div class="card-header">
+			<h4 class="my-0 font-weight-normal">EntregasCadastradas</h4>
+		</div>
+		<div class="card-body">
+			<form method="GET" class="form-horizontal" action="#">
+				<div class="form-group">
+					<div class="input-group mb-2">
+						<div class="input-group mb-2">
+							<input type="text" class="form-control"
+								placeholder="Qual cliente você está procurando?"
+								aria-label="Recipient's username"
+								aria-describedby="basic-addon2">
+							<button class="btn btn-outline-secondary" type="button">Pesquisar</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<br>
+	<div class="card box-shadow">
+		<div class="card-header">
+			<h4 class="my-0 font-weight-normal aw-titulo-panel">Lista de Entregas</h4>
+			<a class="btn btn-link aw-link-panel" href="/entregador/novo">Novo Entrega</a>
+		</div>
+		<div class="card-body">
+			<table class="table table-sm table-bordered table-striped table-condensed">
+				<thead>
+					<tr>
+						<th class="text-center col-md-1">Código</th>
+						<th>Cliente</th>
+						<th class="text-center col-md-2">Endereço</th>
+						<th class="text-center col-md-3">Pedido</th>
+						<th class="text-center col-md-3">Total do Pedido</th>
+						<th class="text-center col-md-3">Entregador</th>
+						<th class="text-center col-md-3">Taxa Entrega</th>
+						<th class="text-center col-md-1">Editar/Excluir</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="deliveryman:${deliverymans}">
+						<td class="text-center" th:text="${delivery.id}"></td>
+						<td class="text-center" th:text="${delivery.client}"></td>
+						<td class="text-center" th:text="${deliveryman.deliveryAdress}"></td>
+						<td class="text-center" th:text="${deliveryman.order}"></td>
+						<td class="text-center" th:text="${deliveryman.valueOrder}"></td>
+						<td class="text-center" th:text="${deliveryman.deliveryFee}"></td>
+						<td class="text-center" th:text="${deliveryman.deliveryMan}"></td>
+						
+						<td class="text-center">
+							<a class="btn btn-link btn-xs" th:href="@{/entregador/{id}(id=${deliveryman.id})}"
+								title="Editar" rel="tooltip" data-placement="top">
+								<span>✍</span>
+							</a>
+							<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal" 
+							th:attr="data-id=${delivery.id}, data-name=${delivery.client}"
+								title="Excluir" rel="tooltip" data-placement="top">
+								<span>💣</span>
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6" th:if="${#lists.isEmpty(delivery)}">Nenhum Pedido Cadastrado</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<div th:replace="DialogoConfirmacaoExclusaoEntrega"></div>
+	
+</section>
+</html>
